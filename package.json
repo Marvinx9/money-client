@@ -5,8 +5,9 @@
   "dependencies": {
     "axios": "^1.7.9",
     "miragejs": "^0.1.48",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-modal": "3.14.4",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.13",
     "web-vitals": "^2.1.0"
@@ -17,9 +18,10 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^4.4.2"
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@types/react-modal": "^3.16.3",
+    "typescript": "^5.7.2"
   },
   "scripts": {
     "start": "react-scripts start",

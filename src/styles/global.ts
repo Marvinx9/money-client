@@ -49,4 +49,13 @@ button {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+.react-modal-overlay {
+    background: rgb(0, 0, 0, 0.5);
+    position: fixed;
+}
+
+.react-modal-content {
+
+}
 `
