@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { transparentize } from 'polished'
 
 export const Container = styled.form`
     h2 {
@@ -49,36 +50,49 @@ export const TransactionTypeContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+`;
 
-    button {
-        height: 4rem;
-        border: 1px;
-        border-radius: 0.25rem;
-        width: 100%;
-        padding: 0 1.5rem;
+interface RadioBoxProps {
+    isActive: boolean;
+    activeColor: 'green' | 'red';
+}
 
-        background: var(--gray);
+const colors = {
+    green: '#015F43',
+    red: '#F75A68'
+};
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+export const RadioBox = styled.button<RadioBoxProps>`
+    height: 4rem;
+    border: 1px;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0 1.5rem;
 
-        transition: 0.2s;
+    background: ${(props) => props.isActive 
+        ? transparentize(0.7, colors[props.activeColor])
+        : '#E1E1E6'
+    };
 
-        &:hover {
-            filter: brightness(0.9);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        img {
-            width: 20px;
-            height: 20px;
-        }
+    transition: 0.2s;
 
-        span {
-            display: inline-block;
-            margin-left: 1rem;
-            font-size: 1rem;
-            color: var(--gray);
-        }
+    &:hover {
+        filter: brightness(0.9);
+    }
+
+    img {
+        width: 20px;
+        height: 20px;
+    }
+
+    span {
+        display: inline-block;
+        margin-left: 1rem;
+        font-size: 1rem;
+        color: var(--gray);
     }
 `;
