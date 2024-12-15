@@ -8,8 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     --red: #F75A68;
     --green: #015F43;
     --gray: #E1E1E6;
-    --light-gray: #C4C4CC
-    --button-modal: #E1E1E6
+    --light-gray: #C4C4CC;
+    --button-modal: #E1E1E6;
 }
 
 * {

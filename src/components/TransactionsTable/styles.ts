@@ -19,15 +19,13 @@ export const Container = styled.div`
             padding: 1rem 2rem;
             border: 0;
             background: var(--shape);
-            color: var(--light-gray);
+            color: #FFFFFF;
             
             &:first-child {
-                color: var(--light-gray);
                 border-radius: 0.25rem 0 0 0.25rem;
             }
 
             &:last-child {
-                color: var(--light-gray);
                 border-radius: 0 0.25rem 0.25rem 0;
             }
 
