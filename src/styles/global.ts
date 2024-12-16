@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray: #E1E1E6;
     --light-gray: #C4C4CC;
     --button-modal: #E1E1E6;
+    --white: #FFFFFF
 }
 
 * {
