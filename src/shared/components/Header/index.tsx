@@ -1,7 +1,7 @@
 import logoImg from "../../asserts/logo.svg";
 import { Container, Content } from "./styles";
 
-interface HeaderProps {
+export interface HeaderProps {
   onOpenNewTransactionModal: () => void;
 }
 

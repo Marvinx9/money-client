@@ -5,6 +5,8 @@ const pathBuilder = (mode: string) => {
   return mode === "production" ? production : development;
 };
 
-const baseURL = pathBuilder(process.env.MODE);
+// const baseURL = pathBuilder(process.env.MODE);
+const baseURL = 'http://localhost:8080/'
+
 
 export { baseURL };

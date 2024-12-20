@@ -1,11 +1,10 @@
 type LoginInputDto = {
   username: string;
   password: string;
-  remembe_me;
 };
 
 type LoginOutputDto = {
-  accessToken: string;
+  access_token: string;
   refreshToken: string;
 } & UserData;
 

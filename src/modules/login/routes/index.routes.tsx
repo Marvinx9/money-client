@@ -3,7 +3,7 @@ import Login from "../page";
 
 const loginRoutes: RouteObject[] = [
   {
-    path: "/auth/login",
+    path: "/",
     element: <Login />,
   },
 ];

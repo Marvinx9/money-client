@@ -7,18 +7,24 @@ import {
 } from "react";
 import { api } from "../services/api";
 
+type FindTransactionInputDto = {
+  search?: string;
+  user_id?: number;
+};
+
 interface Transaction {
   id: number;
+  user_id: number;
   title: string;
   amount: number;
-  type: string;
   category: string;
-  createdAt: string;
-}
+  type: string;
+  created_at: Date;
+};
 
-type TransactionInput = Omit<Transaction, "id" | "createdAt">;
+type TransactionInput = Omit<Transaction, "id" | "created_at">;
 
-interface TransactionsProviderPropes {
+interface TransactionsProviderProps {
   children: ReactNode;
 }
 
@@ -31,7 +37,7 @@ const TransactionsContext = createContext<TransactionsContextData>(
   {} as TransactionsContextData
 );
 
-export function TransactionsProvider({ children }: TransactionsProviderPropes) {
+export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {

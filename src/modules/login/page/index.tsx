@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Form, SwitchButton } from "./style"; // Usando seus estilos previamente definidos.
+import { Container, Form, SwitchButton } from "./style";
 import { loginService } from "../services/login.service";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -22,8 +22,8 @@ const Login = () => {
         password,
       });
 
-      if (response?.accessToken) {
-        localStorage.setItem("accessToken", response.accessToken);
+      if (response?.access_token) {
+        localStorage.setItem("access_token", response.access_token);
         navigate("/dashboard");
       } else {
         setErrorMessage("Credenciais inválidas.");

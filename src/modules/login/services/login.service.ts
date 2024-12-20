@@ -7,20 +7,15 @@ class LoginService {
   async execute({
     username,
     password,
-    remembe_me,
   }: LoginInputDto): Promise<LoginOutputDto> {
     const response = await this.api.post<LoginOutputDto>("/auth/login", {
       username,
       password,
     });
-    const { accessToken, refreshToken, ...userData } = response.data;
+    const { access_token, refreshToken, ...userData } = response.data;
 
-    localStorage.setItem("@access_token", accessToken);
+    localStorage.setItem("@access_token", access_token);
     localStorage.setItem("@user_data", JSON.stringify(userData));
-
-    if (remembe_me) {
-      localStorage.setItem("@refresh_token", refreshToken);
-    }
 
     return response.data;
   }
