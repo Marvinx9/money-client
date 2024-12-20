@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
@@ -30,7 +30,7 @@ html {
 }
 
 body {
-    background: var(--background);
+    background: #1F1F23;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -69,7 +69,7 @@ button {
 .react-modal-content {
     width: 100%;
     max-width: 576px;
-    background: var(--background);
+    background: #1F1F23;
     padding: 3rem;
     position: relative;
     border-radius: 0.24rem;
@@ -87,4 +87,4 @@ button {
         transition: 0.2s;
     }
 }
-`
+`;

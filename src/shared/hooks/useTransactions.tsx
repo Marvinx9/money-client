@@ -5,12 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { api } from "../services/api";
-
-type FindTransactionInputDto = {
-  search?: string;
-  user_id?: number;
-};
+import { findTransactionService } from "../components/TransactionsTable/service/transaction.service";
+import { errorHandler } from "../api/errorHandler";
 
 interface Transaction {
   id: number;
@@ -20,7 +16,7 @@ interface Transaction {
   category: string;
   type: string;
   created_at: Date;
-};
+}
 
 type TransactionInput = Omit<Transaction, "id" | "created_at">;
 
@@ -30,7 +26,7 @@ interface TransactionsProviderProps {
 
 interface TransactionsContextData {
   transactions: Transaction[];
-  createTransaction: (transaction: TransactionInput) => Promise<void>;
+  getTransactions: (transaction: TransactionInput) => Promise<void>;
 }
 
 const TransactionsContext = createContext<TransactionsContextData>(
@@ -40,24 +36,22 @@ const TransactionsContext = createContext<TransactionsContextData>(
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  useEffect(() => {
-    api
-      .get("/transactions")
-      .then((response) => setTransactions(response.data.transactions));
-  }, []);
-
-  async function createTransaction(transactionInput: TransactionInput) {
-    const response = await api.post("/transaction", {
-      ...transactionInput,
-      createdAt: new Date(),
-    });
-    const { transaction } = response.data;
-
-    setTransactions([...transactions, transaction]);
+  async function getTransactions() {
+    try {
+      const response = await findTransactionService.execute();
+      setTransactions(response);
+    } catch (error) {
+      errorHandler(error);
+    }
   }
 
+  useEffect(() => {
+    getTransactions();
+    console.log("epeppepe");
+  }, []);
+
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+    <TransactionsContext.Provider value={{ transactions, getTransactions }}>
       {children}
     </TransactionsContext.Provider>
   );

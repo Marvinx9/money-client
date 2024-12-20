@@ -6,10 +6,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: var(--full-black);
+  background: #121214;
 
   h2 {
-    color: var(--green);
+    color: #015f43;
     margin-bottom: 2rem;
   }
 `;
@@ -32,7 +32,7 @@ export const Form = styled.form`
   button {
     width: 100%;
     padding: 1rem;
-    background: var(--green);
+    background: #015f43;
     color: #fff;
     border: none;
     border-radius: 0.25rem;
@@ -49,7 +49,7 @@ export const Form = styled.form`
 export const SwitchButton = styled.button`
   margin-top: 1rem;
   background: none;
-  color: var(--white);
+  color: #ffffff;
   border: none;
   cursor: pointer;
   font-size: 1rem;

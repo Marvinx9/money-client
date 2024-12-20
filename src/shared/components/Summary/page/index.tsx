@@ -1,12 +1,13 @@
-import incomeImg from "../../asserts/Iconsin.svg";
-import outcomeImg from "../../asserts/Iconsout.svg";
-import totalImg from "../../asserts/Iconstotal.svg";
+import incomeImg from "../../../asserts/Iconsin.svg";
+import outcomeImg from "../../../asserts/Iconsout.svg";
+import totalImg from "../../../asserts/Iconstotal.svg";
 
 import { Container } from "./styles";
 import { useTransactions } from "../../../hooks/useTransactions";
 
 export function Summary() {
   const { transactions } = useTransactions();
+  console.log(transactions);
 
   const summary = transactions.reduce(
     (acc, transaction) => {
