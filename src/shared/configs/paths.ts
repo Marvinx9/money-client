@@ -1,10 +1,10 @@
 const pathBuilder = (mode: string) => {
-  const production = import.meta.env.VITE_API_URL_PRODUCTION;
-  const development = import.meta.env.VITE_API_URL_DEVELOPMENT;
+  const production = process.env.API_URL_PRODUCTION;
+  const development = process.env.API_URL_DEVELOPMENT;
 
   return mode === "production" ? production : development;
 };
 
-const baseURL = pathBuilder(import.meta.env.MODE);
+const baseURL = pathBuilder(process.env.MODE);
 
 export { baseURL };

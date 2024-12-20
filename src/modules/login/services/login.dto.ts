@@ -1,7 +1,7 @@
 type LoginInputDto = {
   username: string;
   password: string;
-  remembe_me?: boolean;
+  remembe_me;
 };
 
 type LoginOutputDto = {
