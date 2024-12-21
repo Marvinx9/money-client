@@ -7,9 +7,22 @@ import { useTransactions } from "../../../hooks/useTransactions";
 
 export function Summary() {
   const { transactions } = useTransactions();
-  console.log(transactions);
 
-  const summary = transactions.reduce(
+  let summary: {
+    deposits: number,
+    withdraws: number,
+    total: number
+  };
+
+  if(transactions.length < 1) {
+    summary = {
+      deposits: 0,
+      withdraws: 0,
+      total: 0,
+    }
+  } else {
+
+  summary = transactions.reduce(
     (acc, transaction) => {
       if (transaction.type === "deposit") {
         acc.deposits += transaction.amount;
@@ -27,6 +40,7 @@ export function Summary() {
       total: 0,
     }
   );
+}
 
   return (
     <Container>

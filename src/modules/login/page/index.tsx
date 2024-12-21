@@ -25,14 +25,11 @@ const Login = () => {
       if (response?.access_token) {
         localStorage.setItem("access_token", response.access_token);
         navigate("/dashboard");
-      } else {
-        setErrorMessage("Credenciais inválidas.");
-      }
+      } 
     } catch (error) {
-      setErrorMessage("Erro ao realizar login. Tente novamente.");
-    } finally {
-      setIsLoading(false);
-    }
+      setIsLoading(false)
+      setErrorMessage("Usuário ou senha inválido.");
+    } 
   };
 
   return (
@@ -58,7 +55,7 @@ const Login = () => {
         </button>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </Form>
-      <SwitchButton onClick={() => navigate("/register")}>
+      <SwitchButton onClick={() => navigate("/user")}>
         Não tem uma conta? Cadastre-se
       </SwitchButton>
     </Container>
