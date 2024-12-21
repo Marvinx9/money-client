@@ -37,6 +37,11 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   async function getTransactions() {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      console.warn("Tentativa de buscar transações sem token válido.");
+      return;
+    }
     try {
       const response = await findTransactionService.execute();
       setTransactions(response);
@@ -46,8 +51,10 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   }
 
   useEffect(() => {
-    getTransactions();
-    console.log("epeppepe");
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      getTransactions();
+    }
   }, []);
 
   return (
