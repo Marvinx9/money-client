@@ -60,13 +60,10 @@
     <h2>Instalação e Configuração</h2>
     <ol>
       <li><strong>Clone o repositório:</strong>
-        <pre><code>git clone https://github.com/usuario/nome-do-repositorio.git
-cd nome-do-repositorio</code></pre>
+        <pre><code>git clone https://github.com/Marvinx9/money-client</code></pre>
       </li>
       <li><strong>Instale as dependências:</strong>
-        <pre><code>npm install
-# ou
-yarn install</code></pre>
+        <pre><code>npm install # ou yarn install</code></pre>
       </li>
       <li><strong>Configure o arquivo <code>.env</code>:</strong>
         <p>Crie um arquivo <code>.env</code> na raiz do projeto com as seguintes variáveis:</p>
