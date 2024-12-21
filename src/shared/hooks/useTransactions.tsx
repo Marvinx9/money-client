@@ -7,6 +7,7 @@ import {
 } from "react";
 import { findTransactionService } from "../components/TransactionsTable/service/transaction.service";
 import { errorHandler } from "../api/errorHandler";
+import { newTransactionService } from "../components/newTransactionModal/service/transaction.service";
 
 interface Transaction {
   id: number;
@@ -18,7 +19,7 @@ interface Transaction {
   created_at: Date;
 }
 
-type TransactionInput = Omit<Transaction, "id" | "created_at">;
+type TransactionInput = Omit<Transaction, "id" | "created_at" | "user_id">;
 
 interface TransactionsProviderProps {
   children: ReactNode;
@@ -27,6 +28,7 @@ interface TransactionsProviderProps {
 interface TransactionsContextData {
   transactions: Transaction[];
   getTransactions: (transaction: TransactionInput) => Promise<void>;
+  createTransaction: (data: TransactionInput) => Promise<void>;
 }
 
 const TransactionsContext = createContext<TransactionsContextData>(
@@ -50,6 +52,18 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     }
   }
 
+  async function createTransaction(data: TransactionInput) {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      return;
+    }
+    try {
+      await newTransactionService.execute(data);
+      await getTransactions();
+    } catch (error) {
+      errorHandler(error);
+    }
+  }
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
@@ -58,7 +72,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions, getTransactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, getTransactions, createTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   );

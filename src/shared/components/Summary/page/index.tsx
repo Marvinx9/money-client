@@ -9,38 +9,38 @@ export function Summary() {
   const { transactions } = useTransactions();
 
   let summary: {
-    deposits: number,
-    withdraws: number,
-    total: number
+    deposits: number;
+    withdraws: number;
+    total: number;
   };
 
-  if(transactions.length < 1) {
+  if (transactions.length < 1) {
     summary = {
       deposits: 0,
       withdraws: 0,
       total: 0,
-    }
+    };
   } else {
+    summary = transactions.reduce(
+      (acc, transaction) => {
+        const amount = Number(transaction.amount);
+        if (transaction.type === "D") {
+          acc.deposits += amount;
+          acc.total += amount;
+        } else {
+          acc.withdraws += amount;
+          acc.total -= amount;
+        }
 
-  summary = transactions.reduce(
-    (acc, transaction) => {
-      if (transaction.type === "deposit") {
-        acc.deposits += transaction.amount;
-        acc.total += transaction.amount;
-      } else {
-        acc.withdraws += transaction.amount;
-        acc.total -= transaction.amount;
+        return acc;
+      },
+      {
+        deposits: 0,
+        withdraws: 0,
+        total: 0,
       }
-
-      return acc;
-    },
-    {
-      deposits: 0,
-      withdraws: 0,
-      total: 0,
-    }
-  );
-}
+    );
+  }
 
   return (
     <Container>

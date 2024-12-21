@@ -29,11 +29,11 @@ export const Container = styled.div`
         border-radius: 0 0.25rem 0.25rem 0;
       }
 
-      &.deposit {
+      &.D {
         color: #c4c4cc;
       }
 
-      &.withdraw {
+      &.W {
         color: #f75a68;
       }
     }

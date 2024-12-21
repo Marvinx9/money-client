@@ -25,11 +25,11 @@ const Login = () => {
       if (response?.access_token) {
         localStorage.setItem("access_token", response.access_token);
         navigate("/dashboard");
-      } 
+      }
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       setErrorMessage("Usuário ou senha inválido.");
-    } 
+    }
   };
 
   return (
@@ -55,7 +55,7 @@ const Login = () => {
         </button>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </Form>
-      <SwitchButton onClick={() => navigate("/user")}>
+      <SwitchButton onClick={() => navigate("/criar-conta")}>
         Não tem uma conta? Cadastre-se
       </SwitchButton>
     </Container>

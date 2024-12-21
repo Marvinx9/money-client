@@ -1,24 +1,8 @@
-import { useState, useEffect } from "react";
 import { Container } from "./styles";
-import { TransactionOutputDto } from "../service/transaction.dto";
-import { findTransactionService } from "../service/transaction.service";
-import { errorHandler } from "../../../api/errorHandler";
+import { useTransactions } from "../../../hooks/useTransactions";
 
 export function TransactionsTable() {
-  const [transactions, setTransactions] = useState<TransactionOutputDto[]>([]);
-
-  async function getTransaction() {
-    try {
-      const response = await findTransactionService.execute();
-      setTransactions(response);
-    } catch (error) {
-      errorHandler(error);
-    }
-  }
-
-  useEffect(() => {
-    getTransaction();
-  }, []);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
