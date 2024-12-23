@@ -1,27 +1,17 @@
-FROM node:20.14.0-alpine AS builder
-RUN apk add --no-cache libc6-compat
+FROM node:20
+
 WORKDIR /app
 
-COPY package*.json yarn.lock /app/
+COPY package*.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
-COPY . /app
+COPY . .
 
 RUN yarn build
-RUN yarn build && ls -l /app/build
 
+RUN yarn global add serve
 
-FROM node:20.14.0-alpine AS prod
-WORKDIR /app
+EXPOSE 3000
 
-RUN addgroup -g 1002 -S frontend
-RUN adduser -S frontend -u 1002
-
-COPY --from=builder /app/build /app
-
-USER frontend
-
-EXPOSE ${PORT}
-
-CMD ["node", "build/server.js"]
+CMD ["serve", "-s", "build", "-l", "3000"]
